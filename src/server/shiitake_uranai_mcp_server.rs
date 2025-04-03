@@ -13,9 +13,7 @@ pub struct ShiitakeUranai {
 #[tool(tool_box)]
 impl ShiitakeUranai {
     pub fn new(constellation: Constellation) -> Self {
-        Self {
-            constellation,
-        }
+        Self { constellation }
     }
 
     #[tool(description = r#"
@@ -28,9 +26,8 @@ impl ShiitakeUranai {
         .to_string()
     )]
     async fn get_fortune_telling(&self) -> Result<CallToolResult, McpError> {
-        let result = scrape(self.constellation.to_string())
-            .await.map_err(|e| {
-                McpError::internal_error("Execution error", Some(json!({ "error": e.to_string() })))
+        let result = scrape(self.constellation.to_string()).await.map_err(|e| {
+            McpError::internal_error("Execution error", Some(json!({ "error": e.to_string() })))
         })?;
         Ok(CallToolResult::success(vec![Content::text(result)]))
     }
