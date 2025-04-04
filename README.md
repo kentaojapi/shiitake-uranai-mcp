@@ -71,11 +71,8 @@ windows
             "args": [
                 "bash",
                 "-c",
-                "docker run -i --rm -e CONSTELLATION mcp/shiitake-uranai-mcp"
-            ],
-            "env": {
-                "CONSTELLATION": "sagittarius"
-            }
+                "docker run -i --rm -e CONSTELLATION={YOUR_CONSTELLATION} mcp/shiitake-uranai-mcp"
+            ]
         }
     }
 }
